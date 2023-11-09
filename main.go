@@ -20,7 +20,7 @@ func main() {
 	}
 
 	// Routes
-	app.Static("/assets", "./assets")
+	app.Static("/static", "./static")
 	app.GET("/", index)
 	app.POST("/save", save)
 

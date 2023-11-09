@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: false }));
 app.engine('.html', require('ejs').__express);
 app.set('views', path.join(__dirname, 'templates'));
 
-app.use('/assets', express.static('./assets'));
+app.use('/static', express.static('./static'));
 
 app.get('/', (_, res) => {
   res.render('index.html');

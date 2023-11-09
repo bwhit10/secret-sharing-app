@@ -4,7 +4,7 @@ The Platform team manages internal tools for the engineering team at Articulate.
 One thing we need to do from time to time is share secrets with each other (API
 keys, etc).
 
-You will find the scaffolding of either a Go or JavaScript web app. Pick one to
+You will find the scaffolding of a Go, Python, or JavaScript web app. Pick one to
 work with and complete this application following the guidelines below. Feel free
 to delete the files you don't need.
 

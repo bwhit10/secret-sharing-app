@@ -1,6 +1,6 @@
-# Articulate Platform Code Challenge
+# Articulate DevEx Tech Challenge
 
-The Platform team manages internal tools for the engineering team at Articulate.
+The DevEx team manages internal tools for the engineering team at Articulate.
 One thing we need to do from time to time is share secrets with each other (API
 keys, etc).
 
@@ -10,7 +10,7 @@ to delete the files you don't need.
 
 ## Requirements
 
-* When the secret is submitted, I should see a URL that I can visit to retrieve
+* When I submit the secret, I should see a URL that I can then visit to retrieve
   the same secret.
 * I should only be able to retrieve the secret once.
 * The secret should not be stored in plain text.

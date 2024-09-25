@@ -16,6 +16,8 @@ to delete the files you don't need.
 * The secret should not be stored in plain text.
 * The application and any dependent services should be ran inside containers (Docker).
 * You should provide instructions to run the application locally in your Pull Request.
+* (Sr Engineer II+): Add at least one test to give an idea of how you would test
+  this application
 
 > [!NOTE]
 > If you need to see a working example (with a few more features), you can check

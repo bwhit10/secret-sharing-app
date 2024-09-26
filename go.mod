@@ -1,4 +1,4 @@
-module github.com/articulate-interviews/platform-code-challenge
+module github.com/articulate-interviews/devex-challenge
 
 go 1.21
 

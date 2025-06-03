@@ -39,8 +39,7 @@ Out of scope:
   * The pull request should have a proper title and description.
   * The pull request should have instructions on how to run the application locally.
 * Comment on code inside the pull request itself to add questions that you ran
-  into or assumptions you made while completing this challenge. You can also push
-  up a Draft PR and ask us questions in Slack as you work through the challenge.
+  into or assumptions you made while completing this challenge.
 
 > [!IMPORTANT]
 > If you have any questions during this challenge, please do not hesitate to reach

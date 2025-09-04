@@ -1,21 +1,28 @@
 # 🔐 Secret Sharing App
 
-This is a simple Go-based secret-sharing service that allows users to:
-- Create encrypted secrets via an HTTP POST request.
-- Retrieve secrets exactly **once** using a unique ID.
-- Automatically expire secrets after a given TTL (Time-To-Live).
-- Store all secrets in memory only (ephemeral storage).
+This is a secure "one-time secret sharing" service. Submit a secret, receive a unique one-time URL, and share it securely. Once the secret is viewed, it is permanently deleted and cannot be retrieved again.
 
 ---
 
-## 🚀 Running the Application
+## ✅ Features
 
-### 🖥️ Option 1: Run Locally with Go
+- ⏳ Secrets auto-expire after a configurable TTL (time to live).
+- 🔒 Secrets are encrypted in memory (not stored in plain text).
+- 🔁 One-time access only — the secret self-destructs after being viewed once.
+- 🐳 Dockerized for easy deployment.
+- ✅ Includes test for expired secret case (can be extended).
+- 💡 Clean, simple Go backend with no external dependencies except Echo.
 
-```bash
-# Clone the repo
-git clone https://github.com/yourusername/devex-challenge-bwhit10.git
-cd devex-challenge-bwhit10
+---
+
+## 🚀 How to Run Locally (with Docker)
+
+1. **Clone the repo**:
+
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/devex-challenge-bwhit10.git
+   cd devex-challenge-bwhit10
+
 
 # Run the application
 go run main.go

@@ -1,38 +1,45 @@
 package main
 
 import (
-	"html/template"
-	"net/http"
-
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+    "fmt"
+    "log"
+    "net/http"
+    "devex-challenge-bwhit10/internal/secret"
 )
 
+
+func index(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	fmt.Fprint(w, `
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Secret Sharing</title>
+		</head>
+		<body>
+			<h2>🔐 Secret Sharing App</h2>
+			<p>Use POST /secret to create a secret and GET /secret/{id} to retrieve it once.</p>
+		</body>
+		</html>
+	`)
+}
+
+
 func main() {
-	app := echo.New()
+	store := secret.NewStore()
+	go store.CleanupExpiredSecrets()
 
-	// Middleware
-	app.Use(middleware.Logger())
-	app.Use(middleware.Recover())
+	http.HandleFunc("/", index)
+	http.HandleFunc("/secret", secret.CreateSecretHandler(store))
+	http.HandleFunc("/secret/", secret.GetSecretHandler(store))
 
-	app.Renderer = &Template{
-		templates: template.Must(template.ParseGlob("templates/*.html")),
-	}
-
-	// Routes
-	app.Static("/static", "./static")
-	app.GET("/", index)
-	app.POST("/save", save)
-
-	app.Logger.Fatal(app.Start(":3000"))
+	log.Println("Server running on http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func index(c echo.Context) error {
-	return c.Render(http.StatusOK, "index.html", nil)
-}
 
-func save(c echo.Context) error {
-	// TODO: save c.FormValue to display later
 
-	return c.String(http.StatusOK, "TODO")
-}
+
+
+

@@ -1,46 +1,121 @@
-# Articulate DevEx Tech Challenge
+# 🔐 Secret Sharing App
 
-The DevEx team manages internal tools for the engineering team at Articulate.
-One thing we need to do from time to time is share secrets with each other (API
-keys, etc).
+This is a simple Go-based secret-sharing service that allows users to:
+- Create encrypted secrets via an HTTP POST request.
+- Retrieve secrets exactly **once** using a unique ID.
+- Automatically expire secrets after a given TTL (Time-To-Live).
+- Store all secrets in memory only (ephemeral storage).
 
-You will find the scaffolding of a Go, Python, or JavaScript web app. Pick one to
-work with and complete this application following the guidelines below. Feel free
-to delete the files you don't need.
+---
 
-## Requirements
+## 🚀 Running the Application
 
-* When I submit the secret, I should see a URL that I can then visit to retrieve
-  the same secret.
-* I should only be able to retrieve the secret once.
-* The secret should not be stored in plain text.
-* The application and any dependent services should be ran inside containers (Docker).
-* You should provide instructions to run the application locally in your Pull Request.
-* (Sr Engineer II+): Add at least one test to give an idea of how you would test
-  this application
+### 🖥️ Option 1: Run Locally with Go
 
-> [!NOTE]
-> If you need to see a working example (with a few more features), you can check
-> out our implementation called [Shush/Yopass](https://shush.articulate.com/).
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/devex-challenge-bwhit10.git
+cd devex-challenge-bwhit10
 
-Out of scope:
+# Run the application
+go run main.go
+```
 
-* The application does not need to look pretty or match the provided styling. Focus
-  on meeting the above requirements.
+### 🐳 Option 2: Run with Docker
 
-## Expectations
+```bash
+# Build the Docker image
+docker build -t secret .
 
-* Do not spend more than 3-4 hours on this challenge. We care more about your
-  approach, communication, and thoughts more than ticking technical boxes.
-* You have one week to complete this challenge. We understand you have commitments
-  outside of interviewing. We want you to set aside a time that works for you to
-  complete this, let us know if something comes up.
-* Once you have completed the challenge, open a Pull Request with your solution.
-  * The pull request should have a proper title and description.
-  * The pull request should have instructions on how to run the application locally.
-* Comment on code inside the pull request itself to add questions that you ran
-  into or assumptions you made while completing this challenge.
+# Run the container
+docker run -p 8080:8080 secret
+```
 
-> [!IMPORTANT]
-> If you have any questions during this challenge, please do not hesitate to reach
-> out to us.
+The app will now be available at:  
+[http://localhost:8080](http://localhost:8080)
+
+---
+
+## 📡 API Endpoints
+
+### 🔸 `POST /secret`
+
+- **Description:** Create a secret
+- **Request Body (JSON):**
+```json
+{
+  "secret": "My secret goes here",
+  "ttl": 300
+}
+```
+- **Response:**
+```json
+{
+  "url": "http://localhost:8080/secret/abc123"
+}
+```
+
+### 🔸 `GET /secret/{id}`
+
+- **Description:** Retrieve a secret by its unique ID.
+- **Behavior:** Only works **once**. After it's been retrieved or expired, you’ll get:
+```json
+{
+  "error": "Secret not found or expired"
+}
+```
+
+---
+
+## 🧪 Running Tests
+
+To run unit tests:
+
+```bash
+go test ./internal/secret
+```
+
+You’ll see output similar to:
+
+```
+ok  	devex-challenge-bwhit10/internal/secret	0.386s
+```
+
+---
+
+## 📁 Project Structure
+
+```plaintext
+devex-challenge-bwhit10/
+├── Dockerfile
+├── README.md
+├── go.mod
+├── go.sum
+├── main.go
+├── internal/
+│   └── secret/
+│       ├── handler.go
+│       ├── handler_test.go
+│       ├── model.go
+│       └── store.go
+├── test/
+├── scripts/
+└── web/
+```
+
+---
+
+## 🧠 Key Features
+
+- 🔒 AES-256 encrypted secrets
+- 🕓 Secrets expire after TTL (seconds)
+- 🔁 Secrets can only be retrieved **once**
+- 🐳 Dockerized for easy deployment
+- ✅ Unit tests included
+
+---
+
+## 🙋🏽‍♀️ Author
+
+**Brittany Whitfield**  
+DevOps | Platform Engineering | Security-Conscious

@@ -87,20 +87,19 @@ ok  	devex-challenge-bwhit10/internal/secret	0.386s
 
 ```plaintext
 devex-challenge-bwhit10/
-├── Dockerfile
-├── README.md
-├── go.mod
-├── go.sum
-├── main.go
-├── internal/
-│   └── secret/
-│       ├── handler.go
-│       ├── handler_test.go
-│       ├── model.go
-│       └── store.go
-├── test/
-├── scripts/
-└── web/
+├── internal/              # Internal Go packages
+│   └── secret/            # Business logic: store, model, encryption, handlers
+├── scripts/               # Utility shell scripts (e.g., port checks)
+├── test/                  # Place for additional tests (if needed)
+├── web/                   # Placeholder for frontend (not used in this version)
+├── .gitignore             # Git ignored files
+├── Dockerfile             # Docker build instructions
+├── go.mod                 # Go module definition
+├── go.sum                 # Go dependencies checksum
+├── main.go                # App entry point and HTTP handlers
+├── README.md              # Project documentation
+└── template.go            # Optional: HTML/template helpers
+
 ```
 
 ---
@@ -117,5 +116,6 @@ devex-challenge-bwhit10/
 
 ## 🙋🏽‍♀️ Author
 
-**Brittany Whitfield**  
+**Brittany Whitfield** 
+ 📫 linkedin.com/in/brittanywhitfield
 DevOps | Platform Engineering | Security-Conscious
